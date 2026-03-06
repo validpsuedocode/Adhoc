@@ -22,6 +22,66 @@ Watch the demo video to see Adhoc in action:
 - [Contributing](#contributing)
 - [License](#license)
 - [Acknowledgements](#acknowledgements)
+Features
+Automatic Documentation
+
+Adhoc continuously analyzes modifications made to your codebase and converts those changes into structured documentation. Instead of developers manually describing what changed and why, Adhoc uses Large Language Models (LLMs) to infer the intent and significance of each modification. This enables the generation of human-readable explanations that remain closely aligned with the technical details of the underlying code.
+
+This capability significantly reduces the documentation burden in fast-moving projects where frequent commits make manual documentation impractical. Adhoc extracts contextual information directly from diffs and file changes, ensuring that explanations are accurate and tied to the real evolution of the project.
+
+Over time, this produces a chronological narrative of the system's development. Developers can review not only what changed, but also the reasoning and architectural implications behind each change. This makes Adhoc especially valuable for onboarding new contributors or reviewing historical decisions.
+
+By automating documentation, Adhoc also encourages better development hygiene. Teams no longer need to choose between shipping features quickly and maintaining clear documentation; both occur simultaneously.
+
+Multiple LLM Providers
+
+Adhoc is designed to work with both local and remote LLM providers, offering flexibility depending on developer preferences and infrastructure constraints. By default, the tool integrates with Ollama, enabling local inference using models such as Llama, Mistral, or other supported models. This is useful for developers who prioritize privacy, offline capabilities, or reduced API costs.
+
+For teams that require stronger reasoning capabilities or larger context windows, Adhoc can also connect to OpenAI-compatible APIs. This includes services like OpenAI itself, OpenRouter, LiteLLM, or other model gateways that follow the same API specification.
+
+Because the provider abstraction is built into the configuration layer, switching models or providers requires minimal changes. Developers can transition between local experimentation and production-grade models simply by updating configuration parameters.
+
+This flexibility ensures that Adhoc can adapt to a wide range of workflows, from individual developers experimenting locally to larger teams integrating it into CI/CD pipelines.
+
+Multiple Output Formats
+
+Adhoc supports generating documentation in multiple output formats, allowing teams to integrate documentation directly into their preferred workflow. Markdown output is ideal for projects that maintain documentation within their repositories, especially those using platforms like GitHub or GitLab.
+
+For teams producing more formal technical reports, Adhoc can generate LaTeX documents that compile into professionally formatted PDFs. This is particularly useful for academic projects, research environments, or technical teams that require high-quality typeset documentation.
+
+The tool also supports Word document generation using python-docx. This enables integration with business workflows where documentation is reviewed, edited, or distributed in standard office formats.
+
+By supporting multiple formats, Adhoc ensures that generated documentation can easily move between developer-focused environments and formal reporting systems without requiring additional manual formatting.
+
+Version Control Integration
+
+Adhoc integrates naturally with version-controlled projects by monitoring changes between snapshots of the codebase. When a commit command is executed, the tool compares the current project state with the previously recorded snapshot and identifies all modifications.
+
+These changes are then analyzed and interpreted by the configured language model, which generates structured explanations describing what was modified and why the change may matter. This produces documentation that evolves alongside the code.
+
+Because Adhoc operates alongside version control systems rather than replacing them, developers can continue using Git or other tools exactly as they normally would. Adhoc simply augments the workflow by capturing additional explanatory context.
+
+Over time, this integration creates a searchable historical archive of code changes, allowing developers to revisit earlier design decisions and understand the reasoning behind specific implementations.
+
+Configurable Settings
+
+Adhoc provides a configuration system that allows developers to tailor the tool to their workflow and environment. Settings such as the LLM provider, API keys, model names, and documentation formats can all be defined within a configuration file.
+
+This configuration is stored locally inside the .Adhoc directory, allowing each project to maintain its own independent settings. Developers can therefore use different models or documentation formats across different repositories without conflict.
+
+Additional configuration options allow developers to personalize generated documentation by specifying metadata such as the author name. This ensures that generated reports maintain a professional and identifiable structure.
+
+Because configuration is managed through simple command-line flags, developers can quickly update settings without needing to edit configuration files manually.
+
+Extensible Design
+
+Adhoc follows a modular architecture that makes it easy to extend or customize. Core components such as change detection, LLM interaction, and document generation are separated into independent modules.
+
+This design allows developers to replace or extend individual components without modifying the entire system. For example, a developer could add support for a new document format, integrate another model provider, or introduce custom prompts tailored to a specific project.
+
+The modular structure also simplifies maintenance and experimentation. New features can be added incrementally without disrupting existing functionality.
+
+As a result, Adhoc is not just a standalone tool but also a framework that can evolve alongside the ecosystem of developer tooling and language models.
 
 ## Features
 - **Automatic Documentation**: Generates explanations for code changes using Large Language Models (LLMs).
