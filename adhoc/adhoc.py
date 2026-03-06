@@ -6,6 +6,9 @@ from .commands.init import init_command
 from .commands.commit import commit_command
 from .commands.generate import generate_command
 from .commands.config import config_command  # New import
+from rich import print 
+
+
 
 def main():
     parser = argparse.ArgumentParser(
@@ -57,4 +60,5 @@ def main():
     args.func(args)
 
 if __name__ == '__main__':
+    print('Running Main method')
     main()
